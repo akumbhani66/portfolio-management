@@ -1,8 +1,8 @@
 {
   "name": "portfolio-management",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Different calculations to analyse portfolio.",
-  "main": "weightage.js",
+  "main": "index.ts",
   "dependencies": {
     "abort-controller": "^3.0.0",
     "atomic-sleep": "^1.0.0",
@@ -20,6 +20,7 @@
     "pino": "^8.6.1",
     "pino-abstract-transport": "^1.0.0",
     "pino-std-serializers": "^6.0.0",
+    "portfolio-management": "^1.0.1",
     "process": "^0.11.10",
     "process-warning": "^2.0.0",
     "quick-format-unescaped": "^4.0.4",
@@ -34,7 +35,7 @@
   "scripts": {
     "test": "test",
     "build": "rm -rf ./dist && tsc",
-    "start": "rm -rf ./dist && tsc && node ./dist/weightage.js"
+    "start": "rm -rf ./dist && tsc && node ./dist/index.js"
   },
   "repository": {
     "type": "git",
