@@ -1,8 +1,12 @@
 const { analyseMyPortFolio, analyseMyPortFolioCli } = require("./dist/index");
 
 // api
-const a = analyseMyPortFolio()
-console.log(a)
+async function a() {
+  console.log(await analyseMyPortFolio("./holdings.csv", "zerodha"))
+}
+
+a();
+
 
 // Cli
-analyseMyPortFolioCli()
+analyseMyPortFolioCli("./holdings.csv", "zerodha")
