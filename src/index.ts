@@ -73,8 +73,7 @@ function analyseMyPortFolioCli() {
 	console.log(table.toString());
 }
 
-analyseMyPortFolioCli()
-
 export = {
-	analyseMyPortFolio: analyseMyPortFolio
+	analyseMyPortFolio: analyseMyPortFolio,
+	analyseMyPortFolioCli: analyseMyPortFolioCli
 }

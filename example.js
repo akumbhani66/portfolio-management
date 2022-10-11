@@ -1,4 +1,8 @@
+const { analyseMyPortFolio, analyseMyPortFolioCli } = require("./dist/index");
 
-const { analyseMyPortFolio } = require("./dist/index.js");
+// api
+const a = analyseMyPortFolio()
+console.log(a)
 
-analyseMyPortFolio();
+// Cli
+analyseMyPortFolioCli()
