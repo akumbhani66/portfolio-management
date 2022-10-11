@@ -1,8 +1,9 @@
 {
   "name": "portfolio-management",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Different calculations to analyse portfolio.",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {
     "abort-controller": "^3.0.0",
     "atomic-sleep": "^1.0.0",
@@ -20,12 +21,12 @@
     "pino": "^8.6.1",
     "pino-abstract-transport": "^1.0.0",
     "pino-std-serializers": "^6.0.0",
-    "portfolio-management": "^1.0.1",
     "process": "^0.11.10",
     "process-warning": "^2.0.0",
     "quick-format-unescaped": "^4.0.4",
     "readable-stream": "^4.2.0",
     "real-require": "^0.2.0",
+    "rimraf": "^3.0.2",
     "safe-stable-stringify": "^2.4.0",
     "sonic-boom": "^3.2.0",
     "split2": "^4.1.0",
@@ -34,8 +35,8 @@
   },
   "scripts": {
     "test": "test",
-    "build": "rm -rf ./dist && tsc",
-    "start": "rm -rf ./dist && tsc && node ./dist/index.js"
+    "build": "rimraf ./dist & tsc",
+    "start": "npm run build && node ./dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -53,6 +54,6 @@
   },
   "homepage": "https://github.com/akumbhani66/portfolio-management#readme",
   "devDependencies": {
-    "@types/node": "^18.8.3"
+    "@types/node": "^18.8.4"
   }
 }
