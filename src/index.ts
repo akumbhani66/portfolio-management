@@ -1,14 +1,38 @@
 const Table = require('cli-table');
 const chalk = require('chalk');
 const format = require('format-number');
+const csv = require('csvtojson');
 
-const myStocks = [
+const {
+	handleZerodhaHoldings,
+	handleGrowwHoldings,
+	getPercentage
+} = require('./helpers');
+
+let myStocks = [
 	{ name: "TCS", avg: 3071.05, marketPrice: 3118.55, qty: 12 },
 	{ name: "Bank of Baroda", avg: 83.02, marketPrice: 132.20, qty: 200 },
 	{ name: "Mahindra & Mahindra", avg: 726, marketPrice: 1243.0, qty: 20 },
 ]
 
-function analyseMyPortFolio() {
+async function analyseMyPortFolio(pathToCsv: string, broker: string) {
+	let holdings;
+	try {
+		holdings = await csv().fromFile(pathToCsv);
+	} catch (err) {
+		return err;
+	}
+
+	switch (broker.toLowerCase()) {
+		case "zerodha":
+			myStocks = handleZerodhaHoldings(holdings);
+			break;
+
+		case "groww":
+			myStocks = handleGrowwHoldings(holdings);
+			break;
+	}
+
 	let totalInvestment: number = 0;
 	let portfolio: number = 0;
 	let statistics: any = [];
@@ -33,12 +57,8 @@ function analyseMyPortFolio() {
 	return { totalInvestment, portfolio, statistics };
 }
 
-function getPercentage(total: number, value: number) {
-	return ((value / total) * 100).toFixed(2);
-};
-
-function analyseMyPortFolioCli() {
-	const { totalInvestment, portfolio, statistics } = analyseMyPortFolio();
+async function analyseMyPortFolioCli(pathToCsv: string, broker: string) {
+	const { totalInvestment, portfolio, statistics } = await analyseMyPortFolio(pathToCsv, broker);
 
 	const table = new Table({
 		head: ['Stock', 'Quantity', 'Average Price', 'Market Price', 'Weightage', "Return"]
