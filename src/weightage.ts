@@ -1,39 +1,76 @@
 const Table = require('cli-table');
+const chalk = require('chalk');
+const format = require('format-number');
 
 const myStocks = [
-    { name: "stockA", avg: 2000, marketPrice: 2000, qty: 5 },
-    { name: "stockB", avg: 4000, marketPrice: 2000, qty: 5 },
-    { name: "stockC", avg: 4000, marketPrice: 2000, qty: 5 },
+	{ name: "TCS", avg: 3071.05, marketPrice: 3118.55, qty: 12 },
+	{ name: "Bank of Baroda", avg: 83.02, marketPrice: 132.20, qty: 200 },
+	{ name: "Mahindra & Mahindra", avg: 726, marketPrice: 1243.0, qty: 20 },
 ]
 
 function analyseMyPortFolio() {
-    let totalInvestment: number = 0;
-    let portfolio: number = 0;
+	let totalInvestment: number = 0;
+	let portfolio: number = 0;
+	let statistics: any = [];
 
-    const table = new Table({
-        head: ['Stock', 'Average Amount', 'Market Price', 'Weightage']
-        , colWidths: [50, 50, 50, 50]
-    });
+	for (let i = 0; i < myStocks.length; i += 1) {
+		totalInvestment = totalInvestment + (myStocks[i].avg * myStocks[i].qty);
+		portfolio = portfolio + (myStocks[i].marketPrice * myStocks[i].qty);
+	}
 
-    for (let i = 0; i < myStocks.length; i += 1) {
-        totalInvestment = totalInvestment + (myStocks[i].avg * myStocks[i].qty);
-        portfolio = portfolio + (myStocks[i].marketPrice * myStocks[i].qty);
-    }
+	for (let i = 0; i < myStocks.length; i += 1)
+		statistics.push(
+			{
+				name: myStocks[i].name,
+				qty: myStocks[i].qty,
+				avg: myStocks[i].avg,
+				marketPrice: myStocks[i].marketPrice,
+				weightage: `${getPercentage(portfolio, (myStocks[i].marketPrice * myStocks[i].qty))}%`,
+				return: `${((myStocks[i].marketPrice * myStocks[i].qty) - (myStocks[i].avg * myStocks[i].qty)).toFixed(2)}`
+			}
+		);
 
-    for (let i = 0; i < myStocks.length; i += 1)
-        table.push(
-            [myStocks[i].name, myStocks[i].avg, myStocks[i].marketPrice, `${getPercentage(portfolio, (myStocks[i].marketPrice * myStocks[i].qty))
-                }%`]
-        );
-
-    console.log(`Total Investment: ${totalInvestment}`);
-    console.log(`Current portfolio: ${portfolio}`);
-    console.log(table.toString());
+	return { totalInvestment, portfolio, statistics };
 }
 
 function getPercentage(total: number, value: number) {
-    return ((value / total) * 100).toFixed(2);
+	return ((value / total) * 100).toFixed(2);
 };
 
-analyseMyPortFolio();
+function analyseMyPortFolioCli() {
+	const { totalInvestment, portfolio, statistics } = analyseMyPortFolio();
 
+	const table = new Table({
+		head: ['Stock', 'Quantity', 'Average Price', 'Market Price', 'Weightage', "Return"]
+		, colWidths: [30, 10, 15, 15, 15, 15]
+	});
+
+	const formatIt = format({ prefix: `₹` });
+
+	for (let i = 0; i < statistics.length; i += 1) {
+		table.push(
+			[
+				statistics[i].name,
+				statistics[i].qty,
+				formatIt(statistics[i].avg),
+				formatIt(statistics[i].marketPrice),
+				`${getPercentage(portfolio, (statistics[i].marketPrice * statistics[i].qty))}%`,
+				formatIt(statistics[i].return)
+			]
+		);
+	}
+
+	console.log(chalk.yellow.underline(`Total Investment:`), chalk.green.bold(`${formatIt(totalInvestment)}`));
+	console.log(chalk.yellow.underline(`Current portfolio:`), chalk.green.bold(`${formatIt(portfolio)}`));
+	console.log(
+		chalk.yellow(
+			`Return: ${totalInvestment > portfolio ?
+				chalk.red.bold(`${formatIt(portfolio - totalInvestment)}`) :
+				chalk.green.bold(`+${formatIt(portfolio - totalInvestment)}`)
+			} `
+		)
+	);
+	console.log(table.toString());
+}
+
+analyseMyPortFolioCli()
