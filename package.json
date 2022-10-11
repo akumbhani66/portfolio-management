@@ -1,0 +1,54 @@
+{
+  "name": "portfolio-management",
+  "version": "1.0.0",
+  "description": "Different calculations to analyse portfolio.",
+  "main": "weightage.js",
+  "dependencies": {
+    "abort-controller": "^3.0.0",
+    "atomic-sleep": "^1.0.0",
+    "base64-js": "^1.5.1",
+    "buffer": "^6.0.3",
+    "cli-table": "^0.3.11",
+    "colors": "^1.0.3",
+    "event-target-shim": "^5.0.1",
+    "events": "^3.3.0",
+    "fast-redact": "^3.1.2",
+    "ieee754": "^1.2.1",
+    "on-exit-leak-free": "^2.1.0",
+    "pino": "^8.6.1",
+    "pino-abstract-transport": "^1.0.0",
+    "pino-std-serializers": "^6.0.0",
+    "process": "^0.11.10",
+    "process-warning": "^2.0.0",
+    "quick-format-unescaped": "^4.0.4",
+    "readable-stream": "^4.2.0",
+    "real-require": "^0.2.0",
+    "safe-stable-stringify": "^2.4.0",
+    "sonic-boom": "^3.2.0",
+    "split2": "^4.1.0",
+    "thread-stream": "^2.2.0",
+    "typescript": "^4.8.4"
+  },
+  "scripts": {
+    "test": "test",
+    "start": "tsc && node ./dist/weightage.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akumbhani66/portfolio-management.git"
+  },
+  "keywords": [
+    "portfolio",
+    "stock",
+    "calculation"
+  ],
+  "author": "akumbhani66",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/akumbhani66/portfolio-management/issues"
+  },
+  "homepage": "https://github.com/akumbhani66/portfolio-management#readme",
+  "devDependencies": {
+    "@types/node": "^18.8.3"
+  }
+}
