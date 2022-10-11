@@ -60,8 +60,8 @@ function analyseMyPortFolioCli() {
 		);
 	}
 
-	console.log(chalk.yellow.underline(`Total Investment:`), chalk.green.bold(`${formatIt(totalInvestment)}`));
-	console.log(chalk.yellow.underline(`Current portfolio:`), chalk.green.bold(`${formatIt(portfolio)}`));
+	console.log(chalk.yellow.underline(`Total Investment:`), chalk.blue.bold(`${formatIt(totalInvestment)}`));
+	console.log(chalk.yellow.underline(`Current portfolio:`), chalk.blue.bold(`${formatIt(portfolio)}`));
 	console.log(
 		chalk.yellow(
 			`Return: ${totalInvestment > portfolio ?
@@ -74,3 +74,5 @@ function analyseMyPortFolioCli() {
 }
 
 analyseMyPortFolioCli()
+
+module.exports.analyseMyPortFolio = analyseMyPortFolio;

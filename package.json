@@ -1,6 +1,6 @@
 {
   "name": "portfolio-management",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Different calculations to analyse portfolio.",
   "main": "weightage.js",
   "dependencies": {
