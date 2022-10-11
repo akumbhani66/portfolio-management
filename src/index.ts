@@ -75,4 +75,6 @@ function analyseMyPortFolioCli() {
 
 analyseMyPortFolioCli()
 
-module.exports.analyseMyPortFolio = analyseMyPortFolio;
+export = {
+	analyseMyPortFolio: analyseMyPortFolio
+}
