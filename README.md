@@ -68,5 +68,5 @@ calcIt();
 ```
 
 Note: 
-* Zerodha holdings only awaitlable for now.
+* Zerodha holdings only available for now.
 * WIP: Groww and brokers parsing 
