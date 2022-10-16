@@ -1,6 +1,6 @@
 {
   "name": "portfolio-management",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Different calculations to analyse portfolio.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
